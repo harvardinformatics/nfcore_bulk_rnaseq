@@ -1,0 +1,2 @@
+sample,fastq_1,fastq_2,strandedness
+unicorn,fastq/unicorn_R1_fastq.gz,fastq/unicorn_R2_fastq.gz,auto

@@ -40,3 +40,12 @@ where the sample column is for the unique sample name, fastq_1 and fastq_2 are p
 
 ## input files
 The current options in the SLURM scripts are run with gtf format annotation files. For custom references, if one wishes to use gff, one can switch the --gff command line switch to "--gff". Note that the suffix has to be "gff", it cannot be "gff3" otherwise the regular expression query on the input file hard-coded in nf-core will cause the job to fail. Also note that, because the workflow converts from gff to gtf internally, there is the potential for the loss of attribute information to lead to other errors. In other words, use gtf if possible. Also, the genome fasta needs to be gzipped and have ".gz" as the file extension. Finally, we provide a config file, *rnaseq_cannon.config*, that all of the scripts call on the command line,  that specifies partitions and resources for various steps. If you are trying to use this script on a cluster other that the Harvard cannon cluster, you will need to tweak partition names accordingly.
+
+## working with UMI libraries
+The Bauer Core builds UMI-basd bulk RNA-seq libraries with the SMRT-seq kit. If you are running on this sort of data, the following command line arguments will have to be added to the SLURM script:
+
+```bash
+--with_umi \
+--umitools_extract_method "string" \
+--umitools_bc_pattern 'NNNNNNNN' \
+```
